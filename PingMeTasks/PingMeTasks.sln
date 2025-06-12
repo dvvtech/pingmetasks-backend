@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "srs", "srs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C99E8A21-79B6-46AA-BF68-E7135439846F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingMeTasks.Api", "src\PingMeTasks.Api\PingMeTasks.Api.csproj", "{55862082-96C6-43C2-90EB-BDCD3AF40CDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55862082-96C6-43C2-90EB-BDCD3AF40CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55862082-96C6-43C2-90EB-BDCD3AF40CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55862082-96C6-43C2-90EB-BDCD3AF40CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55862082-96C6-43C2-90EB-BDCD3AF40CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55862082-96C6-43C2-90EB-BDCD3AF40CDC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AFAB704A-8CF9-4D7B-9313-642519F37381}
+	EndGlobalSection
+EndGlobal
