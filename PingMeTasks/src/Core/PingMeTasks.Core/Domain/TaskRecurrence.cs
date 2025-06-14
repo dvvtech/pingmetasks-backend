@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Core.Domain
 {
+    /// <summary>
+    /// Описание повторения задачи
+    /// </summary>
     public class TaskRecurrence
     {
         public int Id { get; set; }

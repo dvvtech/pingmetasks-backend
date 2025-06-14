@@ -13,7 +13,5 @@ namespace PingMeTasks.Contracts.DTOs.Requests
         public List<string>? DaysOfWeek { get; set; }
         public int? DayOfMonth { get; set; }
         public DateTime? EndDate { get; set; }
-    }
-
-    public enum RecurrenceType { Daily, Weekly, Monthly, Yearly, Custom }
+    }    
 }
