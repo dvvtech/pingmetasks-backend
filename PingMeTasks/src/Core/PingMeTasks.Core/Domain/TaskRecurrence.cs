@@ -16,8 +16,9 @@ namespace PingMeTasks.Core.Domain
         public int Interval { get; set; } = 1; // Каждые N дней/недель/месяцев
         public string? DaysOfWeek { get; set; } // "Monday,Wednesday" (для Weekly)
         public int? DayOfMonth { get; set; } // Для Monthly
+        public DateTime? StartDate { get; set; } // Начало повторений
         public DateTime? EndDate { get; set; } // Окончание повторений
-        public string? CustomCronExpression { get; set; } // Для сложных сценариев
+        //public string? CustomCronExpression { get; set; } // Для сложных сценариев
 
         // Внешний ключ
         public int TaskItemId { get; set; }

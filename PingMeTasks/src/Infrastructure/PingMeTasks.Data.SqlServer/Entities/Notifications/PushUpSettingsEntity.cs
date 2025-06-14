@@ -10,6 +10,8 @@ namespace PingMeTasks.Data.SqlServer.Entities.Notifications
     {
         public int Id { get; set; }
         public string DeviceToken { get; set; } // FCM-токен
+
+        //public string AppType { get; set; } //(iOS/Android)
         public bool IsEnabled { get; set; }
 
         // Внешний ключ

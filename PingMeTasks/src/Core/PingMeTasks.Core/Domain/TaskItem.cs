@@ -11,9 +11,12 @@ namespace PingMeTasks.Core.Domain
         public int Id { get; set; }
         public string Title { get; set; }
         public string? Description { get; set; }
+
+        /// <summary>
+        /// дата выполнения
+        /// </summary>
         public DateTime? DueDate { get; set; }
-        public bool IsCompleted { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;        
+        public bool IsCompleted { get; set; }        
 
         // Внешние ключи
         public int UserId { get; set; }

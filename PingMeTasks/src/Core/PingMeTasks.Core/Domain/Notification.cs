@@ -10,6 +10,10 @@ namespace PingMeTasks.Core.Domain
     {
         public int Id { get; set; }
         public NotificationType Type { get; set; }
+
+        /// <summary>
+        /// Запланированное время
+        /// </summary>
         public DateTime ScheduledTime { get; set; }
         public bool IsSent { get; set; }
 
