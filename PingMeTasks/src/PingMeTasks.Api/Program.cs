@@ -1,9 +1,9 @@
+using PingMeTasks.Api.AppStart;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
+var startup = new Startup();
+startup.Initialize(builder);
 
 var app = builder.Build();
 

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Worker
 {
-    class NotificationWorker
+    /// <summary>
+    /// Раз в N минут проверяет задачи и отправляет уведомления.
+    /// </summary>
+    public class NotificationWorker
     {
     }
 }
