@@ -10,6 +10,6 @@ namespace PingMeTasks.Data.SqlServer.Entities.Notifications
 
         // Внешний ключ
         public int UserId { get; set; }
-        public User User { get; set; }
+        public UserEntity User { get; set; }
     }
 }
