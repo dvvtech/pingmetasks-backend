@@ -5,6 +5,7 @@ C:\DVV\TestProjects\ConsoleApp4\ConsoleApp4\Program.cs
 
 Todo:
 
+1. Task Переименовать в note
 1. Создать БД
 1. Интерфейс настройки уведомлений.
 выбор Telegram, Pushup

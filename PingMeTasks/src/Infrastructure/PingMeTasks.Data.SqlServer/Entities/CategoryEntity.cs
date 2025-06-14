@@ -4,14 +4,23 @@ namespace PingMeTasks.Data.SqlServer.Entities
     public class CategoryEntity
     {
         public int Id { get; set; }
-        public string? Name { get; set; } // Если null → "Без категории"
-        public bool IsDefault { get; set; } // Категория по умолчанию
+
+        /// <summary>
+        /// // Если null → "Без категории"
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Категория по умолчанию
+        /// </summary>
+        public bool IsDefault { get; set; }
+
 
         // Внешний ключ
         public int UserId { get; set; }
         public UserEntity User { get; set; }
 
         // Навигационное свойство
-        public List<Task> Tasks { get; set; } = new();
+        public List<TaskEntity> Tasks { get; set; } = new();
     }
 }

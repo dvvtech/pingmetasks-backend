@@ -14,7 +14,11 @@ namespace PingMeTasks.Data.SqlServer.Entities
         public string? Description { get; set; }
         public DateTime? DueDate { get; set; }
         public bool IsCompleted { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public DateTime CreatedUtcDate { get; set; }
+
+        public DateTime UpdateUtcDate { get; set; }
+
 
         // Внешние ключи
         public int UserId { get; set; }
