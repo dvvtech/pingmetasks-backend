@@ -1,4 +1,9 @@
-﻿namespace PingMeTasks.Api.AppStart
+﻿using PingMeTasks.Core.Interfaces.Repositories;
+using PingMeTasks.Core.Interfaces.Services;
+using PingMeTasks.Core.Services;
+using PingMeTasks.Data.SqlServer.Repositories;
+
+namespace PingMeTasks.Api.AppStart
 {
     public partial class Startup
     {
@@ -10,6 +15,9 @@
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ITaskService, TaskService>();
+            builder.Services.AddScoped<ITaskRepository, TaskRepository>();
         }
     }
 }
