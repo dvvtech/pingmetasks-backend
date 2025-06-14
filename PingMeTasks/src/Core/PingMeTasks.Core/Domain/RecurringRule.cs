@@ -46,15 +46,16 @@ namespace PingMeTasks.Core.Domain
         public int TaskItemId { get; set; }
         public TaskItem TaskItem { get; set; }
 
-        private List<DateTime> GenerateOccurrences()
+        public List<DateTime> GetUpcomingOccurrences(int maxCount = 10)
         {
             // Здесь реализуется логика генерации дат по правилам
             var occurrences = new List<DateTime>();
-            var currentDate = StartDate;
+            var currentDate = GetCurrentStartDate();
 
             int count = 0;
             while ((MaxOccurrences == null || count < MaxOccurrences) &&
-                   (EndDate == null || currentDate <= EndDate))
+                   (EndDate == null || currentDate <= EndDate) &&
+                   count < maxCount)
             {
                 occurrences.Add(currentDate);
                 currentDate = CalculateNextDate(currentDate);
@@ -62,6 +63,30 @@ namespace PingMeTasks.Core.Domain
             }
 
             return occurrences;
+        }
+
+        private DateTime GetCurrentStartDate()
+        {
+            var now = DateTime.Now;
+            if (now < StartDate)
+                return StartDate;
+
+            // Ищем последнюю прошедшую дату, чтобы начать с новой
+            var lastOccurrence = FindLastOccurrence(now);
+            return lastOccurrence.HasValue ? CalculateNextDate(lastOccurrence.Value) : StartDate;
+        }
+
+        private DateTime? FindLastOccurrence(DateTime before)
+        {
+            var result = StartDate;
+            while (true)
+            {
+                var next = CalculateNextDate(result);
+                if (next >= before)
+                    break;
+                result = next;
+            }
+            return result;
         }
 
         private DateTime CalculateNextDate(DateTime current)
