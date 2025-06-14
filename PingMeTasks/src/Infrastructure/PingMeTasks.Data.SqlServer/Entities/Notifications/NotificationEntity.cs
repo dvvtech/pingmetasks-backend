@@ -3,7 +3,7 @@
     public class NotificationEntity
     {
         public int Id { get; set; }
-        public NotificationType Type { get; set; }
+        public NotificationTypeEntity Type { get; set; }
         public DateTime ScheduledTime { get; set; }
         public bool IsSent { get; set; }
 
@@ -15,5 +15,5 @@
         public Task Task { get; set; }
     }
 
-    public enum NotificationType { Telegram, PushUp, Email }
+    public enum NotificationTypeEntity { Telegram, PushUp, Email }
 }
