@@ -30,7 +30,7 @@ namespace PingMeTasks.Core.Services
             // Маппинг рекуррентности (если есть)
             if (request.Recurrence != null)
             {
-                task.Recurrence = new TaskRecurrence
+                task.Recurrence = new RecurringRule
                 {
                     Type = (RepeatType)request.Recurrence.Type,
                     Interval = request.Recurrence.Interval,
