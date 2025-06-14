@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\PingMeTasks.Contracts\PingMeTasks.Contracts.csproj" />
-  </ItemGroup>
-
 </Project>
