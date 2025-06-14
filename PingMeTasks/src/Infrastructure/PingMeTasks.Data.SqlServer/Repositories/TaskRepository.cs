@@ -17,7 +17,8 @@ namespace PingMeTasks.Data.SqlServer.Repositories
         {
             //мапим его в Entity
 
-            await _context.Tasks.AddAsync(task);
+            //await _context.Tasks.AddAsync(task);
+            await Task.CompletedTask;
         }
 
         public async Task SaveChangesAsync()

@@ -15,7 +15,7 @@ namespace PingMeTasks.Core.Domain
         /// <summary>
         /// дата выполнения
         /// </summary>
-        public DateTime? DueDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public bool IsCompleted { get; set; }        
 
         // Внешние ключи

@@ -22,7 +22,7 @@ namespace PingMeTasks.Core.Services
             {
                 Title = request.Title,
                 Description = request.Description,
-                DueDate = request.DueDate,                
+                StartDate = request.DueDate,                
                 UserId = userId,
                 CategoryId = request.CategoryId
             };
@@ -32,11 +32,11 @@ namespace PingMeTasks.Core.Services
             {
                 task.Recurrence = new TaskRecurrence
                 {
-                    Type = (RecurrenceType)request.Recurrence.Type,
+                    Type = (RepeatType)request.Recurrence.Type,
                     Interval = request.Recurrence.Interval,
-                    DaysOfWeek = request.Recurrence.DaysOfWeek != null
+                    /*DaysOfWeek = request.Recurrence.DaysOfWeek != null
                         ? string.Join(",", request.Recurrence.DaysOfWeek)
-                        : null,
+                        : null,*/
                     DayOfMonth = request.Recurrence.DayOfMonth,
                     EndDate = request.Recurrence.EndDate
                 };
@@ -51,12 +51,12 @@ namespace PingMeTasks.Core.Services
                 Id = task.Id,
                 Title = task.Title,
                 Description = task.Description,
-                DueDate = task.DueDate,                
+                DueDate = task.StartDate,                
                 Recurrence = task.Recurrence != null ? new RecurrenceDto
                 {
                     Type = (PingMeTasks.Contracts.DTOs.RecurrenceType)task.Recurrence.Type,
                     Interval = task.Recurrence.Interval,
-                    DaysOfWeek = task.Recurrence.DaysOfWeek?.Split(',').ToList()
+                    //DaysOfWeek = task.Recurrence.DaysOfWeek?.Split(',').ToList()
                 } : null
             };
         }
