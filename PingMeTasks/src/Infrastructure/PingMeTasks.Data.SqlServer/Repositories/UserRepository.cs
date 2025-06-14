@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Data.SqlServer.Repositories
 {
-    class UserRepository
+    public class UserRepository
     {
     }
 }

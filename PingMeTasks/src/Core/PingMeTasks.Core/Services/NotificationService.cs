@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Core.Services
 {
-    class NotificationService
+    public class NotificationService
     {
     }
 }

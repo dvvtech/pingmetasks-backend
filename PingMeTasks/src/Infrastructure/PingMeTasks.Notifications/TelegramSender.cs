@@ -1,10 +1,5 @@
 ﻿using PingMeTasks.Core.Domain;
 using PingMeTasks.Core.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PingMeTasks.Notifications
 {    
@@ -14,7 +9,7 @@ namespace PingMeTasks.Notifications
         {
             // Использует Telegram.Bot для отправки
 
-            return System.Threading.Tasks.Task.FromResult();
+            await System.Threading.Tasks.Task.CompletedTask;
         }
     }
 }

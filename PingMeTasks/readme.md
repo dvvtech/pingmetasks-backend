@@ -1,3 +1,6 @@
+Текстовые заметки с уведомлением в телеграмм и другие месенджеры
+
+
 Проект с телеграммос здесь
 
 C:\DVV\TestProjects\ConsoleApp4\ConsoleApp4\Program.cs

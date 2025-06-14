@@ -6,11 +6,11 @@ using PingMeTasks.Core.Interfaces.Services;
 
 namespace PingMeTasks.Core.Services
 {
-    public class TaskService : ITaskService
+    public class TaskItemService : ITaskItemService
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskItemRepository _taskRepository;
 
-        public TaskService(ITaskRepository taskRepository)
+        public TaskItemService(ITaskItemRepository taskRepository)
         {
             _taskRepository = taskRepository;
         }
@@ -18,7 +18,7 @@ namespace PingMeTasks.Core.Services
         public async Task<TaskResponse> CreateTaskAsync(CreateTaskRequest request, int userId)
         {
             // Маппинг CreateTaskRequest → Task
-            var task = new PingMeTasks.Core.Domain.Task
+            var task = new PingMeTasks.Core.Domain.TaskItem
             {
                 Title = request.Title,
                 Description = request.Description,

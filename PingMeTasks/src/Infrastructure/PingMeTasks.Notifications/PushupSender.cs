@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Notifications
 {
-    class PushupSender
+    public class PushupSender
     {
     }
 }

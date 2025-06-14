@@ -17,8 +17,8 @@ namespace PingMeTasks.Core.Domain
         public int UserId { get; set; }
         public User User { get; set; }
 
-        public int TaskId { get; set; }
-        public Task Task { get; set; }
+        public int TaskItemId { get; set; }
+        public TaskItem TaskItem { get; set; }
     }
 
     public enum NotificationType { Telegram, PushUp, Email }

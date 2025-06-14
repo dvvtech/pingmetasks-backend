@@ -17,6 +17,6 @@ namespace PingMeTasks.Core.Domain
         public User User { get; set; }
 
         // Навигационное свойство
-        public List<Task> Tasks { get; set; } = new();        
+        public List<TaskItem> TaskItems { get; set; } = new();        
     }
 }

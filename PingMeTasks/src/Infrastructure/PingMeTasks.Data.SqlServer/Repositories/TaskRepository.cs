@@ -4,7 +4,7 @@ using PingMeTasks.Data.SqlServer.Entities;
 
 namespace PingMeTasks.Data.SqlServer.Repositories
 {
-    public class TaskRepository : ITaskRepository
+    public class TaskRepository : ITaskItemRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,7 +13,7 @@ namespace PingMeTasks.Data.SqlServer.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(PingMeTasks.Core.Domain.Task task)
+        public async Task AddAsync(PingMeTasks.Core.Domain.TaskItem task)
         {
             //мапим его в Entity
 

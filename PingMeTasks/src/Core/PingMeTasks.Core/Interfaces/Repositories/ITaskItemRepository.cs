@@ -2,9 +2,9 @@
 
 namespace PingMeTasks.Core.Interfaces.Repositories
 {
-    public interface ITaskRepository
+    public interface ITaskItemRepository
     {
-        public Task AddAsync(PingMeTasks.Core.Domain.Task task);
+        public Task AddAsync(PingMeTasks.Core.Domain.TaskItem task);
 
         public Task SaveChangesAsync();
     }

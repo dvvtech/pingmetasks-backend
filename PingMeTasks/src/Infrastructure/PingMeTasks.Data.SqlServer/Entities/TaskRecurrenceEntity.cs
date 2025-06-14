@@ -15,8 +15,8 @@ namespace PingMeTasks.Data.SqlServer.Entities
         //public string? CustomCronExpression { get; set; } // Для сложных сценариев
 
         // Внешний ключ
-        public int TaskId { get; set; }
-        public TaskEntity Task { get; set; }
+        public int TaskItemId { get; set; }
+        public TaskItemEntity TaskItem { get; set; }
     }
 
     public enum RecurrenceType { Daily, Weekly, Monthly, Yearly, Custom }

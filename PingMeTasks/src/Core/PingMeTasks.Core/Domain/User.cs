@@ -12,7 +12,7 @@ namespace PingMeTasks.Core.Domain
 
         // Навигационные свойства
         public List<Category> Categories { get; set; } = new();
-        public List<Task> Tasks { get; set; } = new();
+        public List<TaskItem> TaskItems { get; set; } = new();
 
         //public TelegramSettings? TelegramSettings { get; set; }
         //public PushUpSettings? PushUpSettings { get; set; }

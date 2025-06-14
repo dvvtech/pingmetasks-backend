@@ -21,6 +21,6 @@ namespace PingMeTasks.Data.SqlServer.Entities
         public UserEntity User { get; set; }
 
         // Навигационное свойство
-        public List<TaskEntity> Tasks { get; set; } = new();
+        public List<TaskItemEntity> Tasks { get; set; } = new();
     }
 }

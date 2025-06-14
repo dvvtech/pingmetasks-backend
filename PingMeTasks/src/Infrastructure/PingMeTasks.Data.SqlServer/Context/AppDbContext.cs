@@ -9,7 +9,7 @@ namespace PingMeTasks.Data.SqlServer.Context
     {
         public DbSet<UserEntity> Users { get; set; }
 
-        public DbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<TaskItemEntity> Tasks { get; set; }
 
         public DbSet<TaskRecurrenceEntity> TaskRecurrence { get; set; }
 

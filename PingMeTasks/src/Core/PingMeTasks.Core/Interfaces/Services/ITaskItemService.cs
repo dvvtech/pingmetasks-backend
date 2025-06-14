@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Core.Interfaces.Services
 {
-    public interface ITaskService
+    public interface ITaskItemService
     {
         Task<TaskResponse> CreateTaskAsync(CreateTaskRequest request, int userId);
     }

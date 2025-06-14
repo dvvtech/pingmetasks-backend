@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Data.SqlServer.Entities
 {
-    public class TaskEntity
+    public class TaskItemEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

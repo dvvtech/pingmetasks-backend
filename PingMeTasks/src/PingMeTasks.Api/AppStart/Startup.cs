@@ -16,8 +16,8 @@ namespace PingMeTasks.Api.AppStart
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<ITaskService, TaskService>();
-            builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+            builder.Services.AddScoped<ITaskItemService, TaskItemService>();
+            builder.Services.AddScoped<ITaskItemRepository, TaskRepository>();
         }
     }
 }

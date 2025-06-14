@@ -11,9 +11,9 @@ namespace PingMeTasks.Api.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskItemService _taskService;
 
-        public TasksController(ITaskService taskService)
+        public TasksController(ITaskItemService taskService)
         {
             _taskService = taskService;
         }

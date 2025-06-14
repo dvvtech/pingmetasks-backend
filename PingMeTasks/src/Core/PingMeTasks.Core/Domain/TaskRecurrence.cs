@@ -20,8 +20,8 @@ namespace PingMeTasks.Core.Domain
         public string? CustomCronExpression { get; set; } // Для сложных сценариев
 
         // Внешний ключ
-        public int TaskId { get; set; }
-        public Task Task { get; set; }
+        public int TaskItemId { get; set; }
+        public TaskItem TaskItem { get; set; }
     }
 
     public enum RecurrenceType { Daily, Weekly, Monthly, Yearly, Custom }

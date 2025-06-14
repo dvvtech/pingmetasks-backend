@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingMeTasks.Data.SqlServer.Configurations
 {
-    class TaskConfiguration
+    class TaskItemConfiguration
     {
     }
 }
