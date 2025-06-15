@@ -11,12 +11,32 @@ namespace PingMeTasks.Core.Domain
     public class RecurringRule
     {
         public int Id { get; set; }
-        public RepeatType Type { get; set; }
-        public int Interval { get; set; } = 1; // Каждые N дней/недель/месяцев
-        public DayOfWeek? DayOfWeek { get; set; } // "Monday,Wednesday" (для Weekly)
-        public int? DayOfMonth { get; set; } //для ежемесячного
 
-        public int? MonthOfYear { get; set; }     // для годового
+        public RepeatType Type { get; set; }
+
+        /// <summary>
+        /// // Каждые N дней/недель/месяцев
+        /// </summary>
+        public int Interval { get; set; } = 1;
+
+
+
+        /// <summary>
+        /// Monday,Wednesday" (для Weekly)
+        /// </summary>
+        public DayOfWeek? DayOfWeek { get; set; }
+
+        /// <summary>
+        /// для ежемесячного
+        /// </summary>
+        public int? DayOfMonth { get; set; }
+
+        /// <summary>
+        /// для годового
+        /// </summary>
+        public int? MonthOfYear { get; set; }
+
+
 
         /// <summary>
         /// Дата первого события
@@ -34,6 +54,7 @@ namespace PingMeTasks.Core.Domain
         public int? MaxOccurrences { get; set; }
 
 
+
         // Для кастомных правил типа "2 дня да / 2 дня нет"
         public int ActiveDays { get; set; } = 1;
         public int RestDays { get; set; } = 1;
@@ -43,6 +64,12 @@ namespace PingMeTasks.Core.Domain
         public int TaskItemId { get; set; }
         public TaskItem TaskItem { get; set; }
 
+        /// <summary>
+        /// Получить следующие даты, начиная с текущего времени (UTC)
+        /// </summary>
+        /// <param name="clock"></param>
+        /// <param name="maxCount"></param>
+        /// <returns></returns>
         public List<DateTime> GetUpcomingOccurrences(IClock clock, int maxCount = 10)
         {
             // Здесь реализуется логика генерации дат по правилам
@@ -62,15 +89,10 @@ namespace PingMeTasks.Core.Domain
             return occurrences;
         }
 
-        private DateTime GetCurrentStartDate(IClock clock, string timeZoneId)
+        private DateTime GetCurrentStartDate(IClock clock)
         {
-            //получаем время пользователя
-            var now = clock.GetTimeInTimeZone(timeZoneId);
+            var now = clock.UtcNow;            
 
-            var startDateInUserTz = TimeZoneInfo.ConvertTimeFromUtc(StartDateUtc,
-                                                                    TimeZoneInfo.FindSystemTimeZoneById(timeZoneId));
-
-            
             // Если дата начала ещё не наступила
             if (now < StartDateUtc)
                 return StartDateUtc;

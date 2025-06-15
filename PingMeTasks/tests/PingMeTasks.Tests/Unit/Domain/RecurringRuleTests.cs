@@ -1,11 +1,35 @@
 ﻿using Moq;
 using PingMeTasks.Core.Domain;
 using PingMeTasks.Core.Interfaces.Common;
+using System;
 
 namespace PingMeTasks.Tests.Unit.Domain
 {
     public class RecurringRuleTests
     {
+        [Fact]
+        public void GetUpcomingOccurrences_DailyRule_Returns_CorrectDates()
+        {
+            var rule = new RecurringRule
+            {
+                Type = RepeatType.Daily,
+                Interval = 1,
+                StartDateUtc = new DateTime(2025, 4, 1),
+                MaxOccurrences = 3
+            };
+
+            var mockClock = new Mock<IClock>();
+            var fakeUtc = new DateTime(2025, 4, 2, 0, 0, 0, DateTimeKind.Utc);
+            mockClock.Setup(c => c.Now).Returns(fakeUtc);            
+
+            var dates = rule.GetUpcomingOccurrences(mockClock.Object, 2);
+
+            Assert.Equal(new[] {
+                new DateTime(2025, 4, 2),
+                new DateTime(2025, 4, 3)
+                }, dates);
+        }
+
         [Fact]
         public void Rule_2DaysOn_2DaysOff_ShouldGenerate_CorrectDates()
         {
@@ -21,7 +45,7 @@ namespace PingMeTasks.Tests.Unit.Domain
             };
 
             var mockClock = new Mock<IClock>();
-            var fakeUtc = new DateTime(2025, 4, 1, 0, 0, 0, DateTimeKind.Local);
+            var fakeUtc = new DateTime(2025, 4, 1, 0, 0, 0, DateTimeKind.Utc);
             mockClock.Setup(c => c.Now).Returns(fakeUtc);
 
             // Act
@@ -77,6 +101,38 @@ namespace PingMeTasks.Tests.Unit.Domain
             // Assert
         }
 
+        [Fact]
+        public void GetNextOccurrence_WhenUserInNewYork_ShouldUseLocalTime()
+        {
+            // Arrange
+            var fixedUtcNow = new DateTime(2025, 4, 5, 12, 0, 0, DateTimeKind.Utc);
+            var timeZoneId = "Eastern Standard Time"; // UTC-4 летом
+
+            var mockClock = new Mock<IClock>();
+            mockClock.Setup(c => c.GetTimeInTimeZone(timeZoneId))
+                     .Returns(TimeZoneInfo.ConvertTimeFromUtc(fixedUtcNow,
+                        TZConvert.GetTimeZoneInfo(timeZoneId)));
+
+            var rule = new RecurringRule
+            {
+                StartDateUtc = new DateTime(2025, 4, 1),
+                Type = RepeatType.Daily,
+                Interval = 1
+            };
+
+            var mockUserService = new Mock<ICurrentUserService>();
+            mockUserService.Setup(u => u.TimeZoneId).Returns(timeZoneId);
+
+            var service = new RecurringRuleService(mockClock.Object, mockUserService.Object);
+
+            // Act
+            var nextDate = service.GetNextOccurrence(rule);
+
+            // Assert
+            // Время пользователя: 2025-04-05 08:00:00 (UTC-4)
+            // Последняя задача была 4 апреля → следующая 5 апреля
+            Assert.Equal(new DateTime(2025, 4, 5), nextDate?.Date);
+        }
 
     }
 }
