@@ -1,4 +1,5 @@
-﻿using PingMeTasks.Core.Interfaces.Repositories;
+﻿using PingMeTasks.Core.Interfaces.Common;
+using PingMeTasks.Core.Interfaces.Repositories;
 using PingMeTasks.Core.Interfaces.Services;
 using PingMeTasks.Core.Services;
 using PingMeTasks.Data.SqlServer.Repositories;
@@ -15,6 +16,8 @@ namespace PingMeTasks.Api.AppStart
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSingleton<IClock, SystemClock>();
 
             builder.Services.AddScoped<ITaskItemService, TaskItemService>();
             builder.Services.AddScoped<ITaskItemRepository, TaskRepository>();

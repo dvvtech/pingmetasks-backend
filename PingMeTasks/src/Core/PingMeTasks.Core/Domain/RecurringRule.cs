@@ -1,10 +1,5 @@
 ﻿using PingMeTasks.Core.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PingMeTasks.Core.Interfaces.Common;
 
 namespace PingMeTasks.Core.Domain
 {
@@ -46,11 +41,11 @@ namespace PingMeTasks.Core.Domain
         public int TaskItemId { get; set; }
         public TaskItem TaskItem { get; set; }
 
-        public List<DateTime> GetUpcomingOccurrences(int maxCount = 10)
+        public List<DateTime> GetUpcomingOccurrences(IClock clock, int maxCount = 10)
         {
             // Здесь реализуется логика генерации дат по правилам
             var occurrences = new List<DateTime>();
-            var currentDate = GetCurrentStartDate();
+            var currentDate = GetCurrentStartDate(clock);
 
             int count = 0;
             while ((MaxOccurrences == null || count < MaxOccurrences) &&
@@ -65,9 +60,10 @@ namespace PingMeTasks.Core.Domain
             return occurrences;
         }
 
-        private DateTime GetCurrentStartDate()
+        private DateTime GetCurrentStartDate(IClock clock)
         {
-            var now = DateTime.Now;
+            var now = clock.Now;
+            // Если дата начала ещё не наступила
             if (now < StartDate)
                 return StartDate;
 
@@ -95,11 +91,11 @@ namespace PingMeTasks.Core.Domain
             {
                 RepeatType.Daily => current.AddDays(Interval),
                 RepeatType.Weekly when DayOfWeek.HasValue =>
-                current.Next(DayOfWeek.Value).AddDays(7 * (Interval - 1)),
+                    current.Next(DayOfWeek.Value).AddDays(7 * (Interval - 1)),
                 RepeatType.Monthly when DayOfMonth.HasValue =>
                     current.AddMonths(Interval).SetDay(DayOfMonth.Value),
                 RepeatType.Yearly when MonthOfYear.HasValue && DayOfMonth.HasValue =>
-                current.AddYears(Interval).SetMonth(MonthOfYear.Value).SetDay(DayOfMonth.Value),
+                    current.AddYears(Interval).SetMonth(MonthOfYear.Value).SetDay(DayOfMonth.Value),
                 RepeatType.CustomDaysPattern => GetNextCustomPatternDate(current),
                 _ => current.AddDays(Interval) // fallback
             };
