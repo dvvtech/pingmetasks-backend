@@ -1,4 +1,6 @@
-﻿using PingMeTasks.Core.Domain;
+﻿using Moq;
+using PingMeTasks.Core.Domain;
+using PingMeTasks.Core.Interfaces.Common;
 
 namespace PingMeTasks.Tests.Unit.Domain
 {
@@ -18,8 +20,12 @@ namespace PingMeTasks.Tests.Unit.Domain
                 RestDays = 2
             };
 
+            var mockClock = new Mock<IClock>();
+            var fakeUtc = new DateTime(2025, 4, 1, 0, 0, 0, DateTimeKind.Local);
+            mockClock.Setup(c => c.Now).Returns(fakeUtc);
+
             // Act
-            //var upcomingDates = rule.GetUpcomingOccurrences(maxCount: 6);
+            var upcomingDates = rule.GetUpcomingOccurrences(mockClock.Object,  maxCount: 6);
 
             // Assert
             var expectedDates = new List<DateTime>
@@ -32,17 +38,18 @@ namespace PingMeTasks.Tests.Unit.Domain
                 new DateTime(2025, 4, 10)
             };
 
-            /*Assert.Equal(expectedDates.Count, upcomingDates.Count);
+            Assert.Equal(expectedDates.Count, upcomingDates.Count);
             for (int i = 0; i < expectedDates.Count; i++)
             {
                 Assert.Equal(expectedDates[i].Date, upcomingDates[i].Date);
-            }*/
+            }
         }
 
 
         [Fact]
         public void Rule_2DaysOn_2DaysOff_ShouldGenerate_CorrectDates2()
         {
+            // Arrange
             var rule = new RecurringRule
             {
                 Id = 1,
@@ -54,11 +61,20 @@ namespace PingMeTasks.Tests.Unit.Domain
                 MaxOccurrences = 5
             };
 
-            //var nextDate = rule.GetUpcomingOccurrences(maxCount: 1);
+            var mockClock = new Mock<IClock>();
+            var fakeUtc = new DateTime(2025, 4, 1, 0, 0, 0, DateTimeKind.Local);
+            mockClock.Setup(c => c.Now).Returns(fakeUtc);
+
+            //Act
+
+            var nextDate = rule.GetUpcomingOccurrences(mockClock.Object, maxCount: 1);
             // Вернет ближайший понедельник через 2 недели от стартовой даты
 
-            //var upcomingDates = rule.GetUpcomingOccurrences(maxCount: 3);
+
+            var upcomingDates = rule.GetUpcomingOccurrences(mockClock.Object, maxCount: 3);
             // Получишь список из 3 ближайших дат
+
+            // Assert
         }
 
 
