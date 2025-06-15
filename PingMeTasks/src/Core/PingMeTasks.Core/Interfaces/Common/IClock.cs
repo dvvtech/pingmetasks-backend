@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace PingMeTasks.Core.Interfaces.Common
 {
     public interface IClock
     {
-        DateTime Now { get; }
+        /// <summary>
+        /// Возвращает текущее время в формате UTC
+        /// </summary>
+        DateTime UtcNow { get; }
+
+        /// <summary>
+        /// Возвращает текущее время с учётом временной зоны
+        /// </summary>
+        DateTimeOffset Now { get; }
+
+        /// <summary>
+        /// Получить текущее время в конкретной временной зоне
+        /// </summary>
+        DateTimeOffset GetTimeInTimeZone(string timeZoneId);
     }
 }
