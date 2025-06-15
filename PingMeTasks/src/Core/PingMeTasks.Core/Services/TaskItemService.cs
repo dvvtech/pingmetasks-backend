@@ -38,7 +38,7 @@ namespace PingMeTasks.Core.Services
                         ? string.Join(",", request.Recurrence.DaysOfWeek)
                         : null,*/
                     DayOfMonth = request.Recurrence.DayOfMonth,
-                    EndDate = request.Recurrence.EndDate
+                    EndDateUtc = request.Recurrence.EndDate
                 };
             }
 

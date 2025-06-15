@@ -1,5 +1,7 @@
 ﻿using PingMeTasks.Core.Extensions;
 using PingMeTasks.Core.Interfaces.Common;
+using System.Data;
+using System.Threading;
 
 namespace PingMeTasks.Core.Domain
 {
@@ -19,12 +21,12 @@ namespace PingMeTasks.Core.Domain
         /// <summary>
         /// Дата первого события
         /// </summary>
-        public DateTime StartDate { get; set; } 
+        public DateTime StartDateUtc { get; set; } 
 
         /// <summary>
         /// До какой даты повторять
         /// </summary>
-        public DateTime? EndDate { get; set; }
+        public DateTime? EndDateUtc { get; set; }
 
         /// <summary>
         /// Максимальное число повторений
@@ -49,7 +51,7 @@ namespace PingMeTasks.Core.Domain
 
             int count = 0;
             while ((MaxOccurrences == null || count < MaxOccurrences) &&
-                   (EndDate == null || currentDate <= EndDate) &&
+                   (EndDateUtc == null || currentDate <= EndDateUtc) &&
                    count < maxCount)
             {
                 occurrences.Add(currentDate);
@@ -60,21 +62,27 @@ namespace PingMeTasks.Core.Domain
             return occurrences;
         }
 
-        private DateTime GetCurrentStartDate(IClock clock)
+        private DateTime GetCurrentStartDate(IClock clock, string timeZoneId)
         {
-            var now = clock.Now;
+            //получаем время пользователя
+            var now = clock.GetTimeInTimeZone(timeZoneId);
+
+            var startDateInUserTz = TimeZoneInfo.ConvertTimeFromUtc(StartDateUtc,
+                                                                    TimeZoneInfo.FindSystemTimeZoneById(timeZoneId));
+
+            
             // Если дата начала ещё не наступила
-            if (now < StartDate)
-                return StartDate;
+            if (now < StartDateUtc)
+                return StartDateUtc;
 
             // Ищем последнюю прошедшую дату, чтобы начать с новой
             var lastOccurrence = FindLastOccurrence(now);
-            return lastOccurrence.HasValue ? CalculateNextDate(lastOccurrence.Value) : StartDate;
+            return lastOccurrence.HasValue ? CalculateNextDate(lastOccurrence.Value) : StartDateUtc;
         }
 
         private DateTime? FindLastOccurrence(DateTime before)
         {
-            var result = StartDate;
+            var result = StartDateUtc;
             while (true)
             {
                 var next = CalculateNextDate(result);
@@ -108,10 +116,10 @@ namespace PingMeTasks.Core.Domain
             var cycleLength = activeDays + restDays;
 
             // Найдём начало текущего цикла
-            var daysSinceStart = (current.Date - StartDate.Date).Days;
+            var daysSinceStart = (current.Date - StartDateUtc.Date).Days;
 
             if (daysSinceStart < 0)
-                return StartDate;
+                return StartDateUtc;
 
             if (daysSinceStart % cycleLength < activeDays)
             {

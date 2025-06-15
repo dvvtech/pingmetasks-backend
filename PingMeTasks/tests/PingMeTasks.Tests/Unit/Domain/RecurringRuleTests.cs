@@ -15,7 +15,7 @@ namespace PingMeTasks.Tests.Unit.Domain
                 Id = 1,
                 TaskItemId = 1,
                 Type = RepeatType.CustomDaysPattern,
-                StartDate = new DateTime(2025, 4, 1),
+                StartDateUtc = new DateTime(2025, 4, 1),
                 ActiveDays = 2,
                 RestDays = 2
             };
@@ -57,7 +57,7 @@ namespace PingMeTasks.Tests.Unit.Domain
                 Type = RepeatType.Weekly,
                 Interval = 2,
                 DayOfWeek = DayOfWeek.Monday,
-                StartDate = new DateTime(2025, 4, 1),
+                StartDateUtc = new DateTime(2025, 4, 1),
                 MaxOccurrences = 5
             };
 
