@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PingMeTasks.Core\PingMeTasks.Core.csproj" />
+  </ItemGroup>
+
 </Project>

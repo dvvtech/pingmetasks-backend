@@ -21,6 +21,8 @@ namespace PingMeTasks.Api.AppStart
 
             builder.Services.AddScoped<ITaskItemService, TaskItemService>();
             builder.Services.AddScoped<ITaskItemRepository, TaskRepository>();
+
+            //builder.Services.AddHostedService<TaskSchedulerWorker>();
         }
     }
 }

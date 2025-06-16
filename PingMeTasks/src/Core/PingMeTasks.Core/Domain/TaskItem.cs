@@ -26,7 +26,7 @@ namespace PingMeTasks.Core.Domain
         public Category? Category { get; set; }
 
         // Навигационные свойства
-        public RecurringRule? Recurrence { get; set; }
+        public RecurringRule? RecurringRule { get; set; }
         public List<Notification> Notifications { get; set; } = new();
     }    
 }

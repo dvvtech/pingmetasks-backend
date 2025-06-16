@@ -64,6 +64,12 @@ namespace PingMeTasks.Core.Domain
         public int TaskItemId { get; set; }
         public TaskItem TaskItem { get; set; }
 
+        /*public DateTime GetNextOccurrence(DateTime lastExecutionTimeUtc, DateTime nowUtc)
+        {
+            var occurrences = GetUpcomingOccurrences(nowUtc, maxCount: 1);
+            return occurrences.FirstOrDefault();
+        }*/
+
         /// <summary>
         /// Получить следующие даты, начиная с текущего времени (UTC)
         /// </summary>
